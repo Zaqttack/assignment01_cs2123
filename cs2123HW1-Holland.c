@@ -343,7 +343,7 @@ functionRuntimes timeAlgorithm( char *szName, int iNumRepeats, int iNumTestCaseS
 {
     /* Call and calculate the runtime of the provided function f */
     clock_t start, end;
-    int i, j, averageTimes;
+    int i, j;
     FILE *testData;
 
     //create functionRuntimes variable to return
@@ -357,7 +357,7 @@ functionRuntimes timeAlgorithm( char *szName, int iNumRepeats, int iNumTestCaseS
     /* fill iNumTestCaseSizes in fRT with the variable iNumTestCaseSizes */
     fRT.iNumTestCaseSizes = iNumTestCaseSizes;
     /* malloc space for arrTestSizes in fRT to hold iNumTestCaseSizes number of ints */
-    fRT.arrTestSizes = (int*)malloc(sizeof(int));
+    fRT.arrTestSizes = (int*)malloc(iNumTestCaseSizes * sizeof(int));
     /* fill arrTestSizes in fRT with the variable arrTestSizes (hint: use a loop) */
     for(i = 0; i < iNumTestCaseSizes; i++)
     {
@@ -458,7 +458,7 @@ void printRuntimeTable( functionRuntimes fRT )
     int testNumber = 0;
     char tableHeader[] = "Test Size";
     
-    printf("%s Title\n", fRT.szName);
+    printf("%s\n", fRT.szName);
     printf("%-12s", tableHeader);
     for(i = 0; i < fRT.iNumRepeats; i++)
     {
@@ -475,6 +475,7 @@ void printRuntimeTable( functionRuntimes fRT )
         }
         printf("%.3f\n", fRT.arrAvg[i]);
     }
+    printf("\n");
 }
 
 /* TODO: TO BE COMPLETED BY YOU
