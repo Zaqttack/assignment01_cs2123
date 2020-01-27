@@ -365,11 +365,11 @@ functionRuntimes timeAlgorithm( char *szName, int iNumRepeats, int iNumTestCaseS
     }
 
     //TODO: malloc an array with iNumTestCaseSizes variables of type double* (on next line)
-    fRT.arrRuntimes = (double**)malloc(sizeof(double)); /* replace NULL with your code */
+    fRT.arrRuntimes = (double**)malloc(iNumTestCaseSizes * sizeof(double)); /* replace NULL with your code */
     for( i=0; i<iNumTestCaseSizes; i++ )
     {
         //TODO: malloc an array with iNumRepeats variables of type double (on next line)
-        fRT.arrRuntimes[i] = (double*)malloc(sizeof(double)); /* replace NULL with your code and uncomment the line */
+        fRT.arrRuntimes[i] = (double*)malloc(iNumRepeats * sizeof(double)); /* replace NULL with your code and uncomment the line */
 
         for( j=0; j<iNumRepeats; j++ )
         {
@@ -389,7 +389,7 @@ functionRuntimes timeAlgorithm( char *szName, int iNumRepeats, int iNumTestCaseS
     }
 
     //TODO: Calculate the average runtimes (malloc space for fRT.arrAvg and call computeAvg here)
-    fRT.arrAvg = (double*)malloc(sizeof(double));
+    fRT.arrAvg = (double*)malloc(iNumTestCaseSizes * sizeof(double));
     computeAvg(fRT);
 
     return fRT;
@@ -437,14 +437,14 @@ void computeAvg( functionRuntimes fRT )
 
     for(i = 0; i < fRT.iNumTestCaseSizes; i++)
     {
-        averageTimes = 0;
+        averageTimes = 0.0;
         for(j = 0; j < fRT.iNumRepeats; j++)
         {
             averageTimes += fRT.arrRuntimes[i][j];
         }
         averageTimes /= fRT.iNumRepeats;
 
-        fRT.arrAvg = &averageTimes;
+        fRT.arrAvg[i] = averageTimes;
     }
 }
 
@@ -473,7 +473,7 @@ void printRuntimeTable( functionRuntimes fRT )
         {
             printf("%-10.3f", fRT.arrRuntimes[i][j]);
         }
-        printf("%.3f\n", *fRT.arrAvg);
+        printf("%.3f\n", fRT.arrAvg[i]);
     }
 }
 
