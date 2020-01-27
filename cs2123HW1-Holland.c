@@ -330,9 +330,9 @@ int partition( int* points, int low, int high )
 /*
 TODO: Give your asymptotic estimates for the runtimes of the following 3 functions:
 
-mysteryRuntime1:  O(   )
-mysteryRuntime2:  O(   )
-mysteryRuntime3:  O(   )
+mysteryRuntime1:  O( 1 )
+mysteryRuntime2:  O( n )
+mysteryRuntime3:  O( n^2 )
 */
 
 
